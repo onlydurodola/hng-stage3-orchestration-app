@@ -1,0 +1,28 @@
+services:
+  orchestration:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - ~/.kube/config:/root/.kube/config
+    env_file:
+      - .env
+    depends_on:
+      - elasticsearch
+  test-base:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile.test
+    image: test-base:latest
+  elasticsearch:
+    image: elasticsearch:8.7.1
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+    ports:
+      - "9200:9200"
+#
