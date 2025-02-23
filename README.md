@@ -1,8 +1,11 @@
 /orchestration-app
 
 ├── backend/
+
 │   ├── _init_.py          # Empty file to mark as Python package
+
 │   ├── main.py             # FastAPI WebSocket server
+
 │   ├── kubernetes_manager.py # Kubernetes interaction logic (e.g., pod creation, code injection)
 │   ├── deployment_pipeline.py # Deployment workflow (testing and production deployment)
 │   ├── log_processor.py    # Elasticsearch logging integration
